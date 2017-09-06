@@ -11,7 +11,7 @@
   "scripts": {
     "start": "babel-watch --watch src src/index.js",
     "debug": "DB=mongodb://localhost:27017/expressboilerplate babel-watch --watch src src/index.js --inspect",
-    "build": "yarn lint && yarn test && babel src --out-dir dist --quiet",
+    "build": "yarn install && yarn lint && yarn test && babel src --out-dir dist --quiet",
     "heroku-prebuild": "yarn build",
     "test": "jest",
     "lint": "eslint src tests && flow --quiet"
