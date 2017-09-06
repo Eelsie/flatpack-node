@@ -4,10 +4,15 @@
   "main": "index.js",
   "license": "MIT",
   "description": "A modern Express boilerplate for building RESTful APIs.",
+  "engines": {
+    "node": "8.1.2",
+    "npm": "5.3.0"
+  },
   "scripts": {
     "start": "babel-watch --watch src src/index.js",
     "debug": "DB=mongodb://localhost:27017/expressboilerplate babel-watch --watch src src/index.js --inspect",
     "build": "yarn lint && yarn test && babel src --out-dir dist --quiet",
+    "heroku-prebuild": "yarn build",
     "test": "jest",
     "lint": "eslint src tests && flow --quiet"
   },
