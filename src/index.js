@@ -6,6 +6,7 @@ import createApp from '$app/createApp'
 
 require('dotenv').load()
 
+
 const app = createApp()
 const port = process.env.PORT || 3000
 
