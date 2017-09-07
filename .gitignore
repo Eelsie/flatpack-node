@@ -3,4 +3,4 @@ jest
 node_modules
 .env
 
-/src/modules/auth/googleId.js
+/src/keys.js

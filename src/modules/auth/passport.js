@@ -2,7 +2,19 @@
 
 import passport from 'passport'
 import {Strategy} from 'passport-google-oauth20'
-import {googleClientID, googleSecretClient} from './googleId'
+import User from '$db/models/User'
+import {googleClientID, googleSecretClient} from '../../keys'
+
+passport.serializeUser((user, done) => {
+  done(null, user.id)
+})
+
+passport.deserializeUser((id, done) => {
+  User.findById(id)
+    .then((user) => {
+      done(null, user)
+    })
+})
 
 passport.use(new Strategy({
   clientID: googleClientID,
@@ -10,7 +22,19 @@ passport.use(new Strategy({
   callbackURL: '/auth/google/callback',
 },
 (accessToken, refreshToken, profile, done) => {
-  console.log('access token:', accessToken)
-  console.log('refresh token:', refreshToken)
-  console.log('profile:', profile)
+  User.findOne({googleId: profile.id})
+    .then((existingUser) => {
+      if (existingUser) {
+        done(null, existingUser)
+      } else {
+        new User({
+          googleId: profile.id,
+          displayName: profile.displayName,
+          name: profile.name,
+          emails: profile.emails,
+          image: profile.photos,
+        }).save()
+          .then((user) => done(null, user))
+      }
+    })
 }))
