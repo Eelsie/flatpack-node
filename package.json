@@ -2,6 +2,7 @@
   "name": "express-boilerplate",
   "version": "1.0.0",
   "main": "index.js",
+  "homepage": "https://peaceful-everglades-93797.herokuapp.com",
   "license": "MIT",
   "description": "A modern Express boilerplate for building RESTful APIs.",
   "engines": {
