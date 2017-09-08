@@ -14,7 +14,7 @@
     "debug": "DB=mongodb://localhost:27017/expressboilerplate babel-watch --watch src src/index.js --inspect",
     "build": "yarn install && babel src --out-dir dist --quiet",
     "heroku-prebuild": "yarn build",
-    "heroku-postbuild": "yarn build",
+    "heroku-postbuild": "dist/index.js",
     "test": "jest",
     "lint": "eslint src tests && flow --quiet"
   },
